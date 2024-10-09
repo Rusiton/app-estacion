@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+
+    <style>
+
+        *{
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background: radial-gradient(circle, rgba(242,251,63,1) 0%, rgba(147,253,141,1) 27%, rgba(31,255,236,1) 100%);
+        }
+
+        #wrapper{
+            height: 100%;
+        }
+
+        #content{
+            width: 100%;
+            height: 100%;
+            
+            display: grid;
+            place-items: center;
+        }
+
+        #stations_table{
+            width: 600px;
+
+            border: 1px solid gray;
+            border-collapse: collapse;
+
+            thead tr{
+                background-color: rgb(97, 171, 255);
+                border-bottom: 1px solid gray
+            }
+
+            tr{
+                height: 3rem;
+                background-color: rgb(238, 238, 238);
+
+                text-align: center;
+            }
+
+            tr:nth-child(even){
+                background-color: rgb(221, 221, 221);
+            }
+        }
+
+        .station{
+            cursor: pointer;
+        }
+
+        .station:hover{
+            box-shadow: 0 0 1px 1px gray;
+            transform: scale(1.05);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div id="content">
+
+            <table id="stations_table">
+
+                <thead>
+                    <tr>
+                        <td class="thead">Estación</td>
+                        <td class="thead">Ubicación</td>
+                        <td class="thead">Visitas</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <template id="station_template">
+                        <tr class="station">
+
+                            <td class="station_alias"></td>
+                            <td class="station_location"></td>
+                            <td class="station_visits"></td>
+
+                        </tr>
+                    </template>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+
+        let stations = await fetch("https://mattprofe.com.ar/proyectos/app-estacion/datos.php?mode=list-stations");
+        stations = await stations.json();
+
+        stations.forEach( ({ chipid, apodo, ubicacion, visitas }) => {
+
+            const template = station_template.content.cloneNode(true);
+
+            const station = template.querySelector(".station");
+
+            station.id = chipid;
+
+            station.querySelector(".station_alias").textContent = apodo;
+            station.querySelector(".station_alias").id = chipid;
+
+            station.querySelector(".station_location").textContent = ubicacion;
+            station.querySelector(".station_location").id = chipid;
+
+            station.querySelector(".station_visits").textContent = visitas;
+            station.querySelector(".station_visits").id = chipid;
+
+            stations_table.appendChild(station);
+
+        });
+
+        stations_table.addEventListener("click", event => {
+
+            if(event.target !== stations_table && event.target.className !== "thead"){
+                window.location = "detalle?chipid=" + event.target.id;
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
