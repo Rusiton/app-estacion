@@ -1,0 +1,57 @@
+@extern('head')
+
+    <link rel="stylesheet" href="views/css/reset.css">
+
+    <div id="modal_container">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Contraseña reestablecida</h3>
+            </div>
+            <div class="modal-content">
+                <div class="modal-icon-container">
+                    <i class="fa-solid fa-check fa-2xl" style="color: #63E6BE;"></i>
+                </div>
+                <div class="modal-text-container">
+                    <p class="modal-text">Su contraseña se ha reestablecido con éxito.</p>
+                    <p class="modal-countdown">Redireccionando en <span id="modal_countdown">3</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <div class="reset-form-container">
+            <form class="reset-form" id="reset_form">
+                <div class="form-header">
+                    <h1>Recuperar cuenta</h1>
+                </div>
+                <div class="form-fields">
+                    <p>Para recuperar tu cuenta, crea una nueva clave</p>
+                    <div class="form-field">
+                        <label for="input_password" class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-input" id="input_password" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="input_password_confirm" class="form-label">Repita la contraseña</label>
+                        <input type="password" name="password_confirm" class="form-input" id="input_password_confirm" required>
+                    </div>
+
+                    <div class="error-container" id="error_container">
+                        <p id="error_message"></p>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <div class="form-button-container">
+                        <input type="submit" id="submit_button" value="Reestablecer mi contraseña">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script type="module" src="views/javascript/reset.js"></script>
+
+@extern('footer')

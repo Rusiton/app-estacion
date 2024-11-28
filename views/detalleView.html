@@ -1,213 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extern('head')
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="views/css/detalle.css">
-    <title>Detalle</title>
 
-</head>
-<body>
-    
-    <div id="wrapper">
+    <div id="content">
 
-        <div id="content">
+        <div id="station_container">
+            <h1 id="station_alias"></h1>
+            <h2 id="station_location"></h2>
+        </div>
 
-            <div id="station_container">
-                <h1 id="station_alias"></h1>
-                <h2 id="station_location"></h2>
+        <div id="stats">
+
+            <div id="stats_options">
+                <button id="button_temperature"></button>
+                <button id="button_fire"></button>
+                <button id="button_humidity"></button>
+                <button id="button_pression"></button>
+                <button id="button_wind"><span id="button_wind_direction"></span><span id="button_wind_speed"></span></button>
             </div>
 
-            <div id="stats">
+            <div id="stats_container">
 
-                <div id="stats_options">
-                    <button id="button_temperature"></button>
-                    <button id="button_fire"></button>
-                    <button id="button_humidity"></button>
-                    <button id="button_pression"></button>
-                    <button id="button_wind"><span id="button_wind_direction"></span><span id="button_wind_speed"></span></button>
-                </div>
+                <template id="temperature_template">
 
-                <div id="stats_container">
+                    <div class="option-container" id="temperature_container">
+                        <div class="temperature">
 
-                    <template id="temperature_template">
-
-                        <div class="option-container" id="temperature_container">
-                            <div class="temperature">
-
-                                <h2 class="option-title" id="temperature_title">TEMPERATURA</h2>
-
-                                <div class="option-important">
-                                    <h2 class="option-integer" id="temperature_integer"></h2>
-                                    <div class="option-detail">
-                                        <h4 class="option-unit" id="temperature_unit">C°</h4>
-                                        <h4 class="option-decimal" id="temperature_decimal">.</h4>
-                                    </div>
-                                </div>
-
-                                <div class="temperature_minmax">
-                                    <div class="temperature_min">
-                                        <h5 id="temperature_minlabel">MÍNIMA</h5>
-                                        <h5 id="temperature_minvalue"></h5>
-                                    </div>
-
-                                    <div class="temperature_max">
-                                        <h5 id="temperature_maxlabel">MÁXIMA</h5>
-                                        <h5 id="temperature_maxvalue"></h5>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="sensation">
-
-                                <h2 class="option-title" id="sensation_title">SENSACIÓN</h2>
-
-                                <div class="option-important">
-                                    <h2 class="option-integer" id="sensation_integer"></h2>
-                                    <div class="option-detail">
-                                        <h4 class="option-unit" id="sensation_unit">C°</h4>
-                                        <h4 class="option-decimal" id="sensation_decimal">.</h4>
-                                    </div>
-                                </div>
-
-                                <div class="sensation_minmax">
-                                    <div class="sensation_min">
-                                        <h5 id="sensation_minlabel">MÍNIMA</h5>
-                                        <h5 id="sensation_minvalue"></h5>
-                                    </div>
-
-                                    <div class="sensation_max">
-                                        <h5 id="sensation_maxlabel">MÁXIMA</h5>
-                                        <h5 id="sensation_maxvalue"></h5>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </template>
-
-                    <template id="fire_template">
-
-                        <div class="option-container" id="fire_container">
-
-                            <div class="fire-col">
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">FFMC</h4>
-                                    <h5 id="ffmc"></h5>
-                                </div>
-
-                                <hr>
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">DMC</h4>
-                                    <h5 id="dmc"></h5>
-                                </div>
-
-                                <hr>
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">DC</h4>
-                                    <h5 id="dc"></h5>
-                                </div>
-
-                            </div>
-
-                            <div class="fire-col">
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">ISI</h4>
-                                    <h5 id="isi"></h5>
-                                </div>
-
-                                <hr>
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">BUI</h4>
-                                    <h5 id="bui"></h5>
-                                </div>
-
-                                <hr>
-
-                                <div class="fire-item">
-                                    <h4 class="fire-itemtitle">FWI</h4>
-                                    <h5 id="fwi"></h5>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                    </template>
-
-                    <template id="humidity_template">
-
-                        <div class="option-container" id="humidity_container">
-
-                            <h2 class="option-title" id="humidity_title">HUMEDAD</h2>
+                            <h2 class="option-title" id="temperature_title">TEMPERATURA</h2>
 
                             <div class="option-important">
-                                <h2 class="option-integer" id="humidity_integer"></h2>
+                                <h2 class="option-integer" id="temperature_integer"></h2>
                                 <div class="option-detail">
-                                    <h4 class="option-unit" id="humidity_unit">%</h4>
-                                    <h4 class="option-decimal" id="humidity_decimal">.</h4>
+                                    <h4 class="option-unit" id="temperature_unit">C°</h4>
+                                    <h4 class="option-decimal" id="temperature_decimal">.</h4>
+                                </div>
+                            </div>
+
+                            <div class="temperature_minmax">
+                                <div class="temperature_min">
+                                    <h5 id="temperature_minlabel">MÍNIMA</h5>
+                                    <h5 id="temperature_minvalue"></h5>
+                                </div>
+
+                                <div class="temperature_max">
+                                    <h5 id="temperature_maxlabel">MÁXIMA</h5>
+                                    <h5 id="temperature_maxvalue"></h5>
                                 </div>
                             </div>
 
                         </div>
-                        
-                    </template>
 
-                    <template id="pression_template">
+                        <div class="sensation">
 
-                        <div class="option-container" id="pression_template">
-
-                            <h2 class="option-title" id="pression_title">PRESIÓN</h2>
+                            <h2 class="option-title" id="sensation_title">SENSACIÓN</h2>
 
                             <div class="option-important">
-                                <h2 class="option-integer" id="pression_integer"></h2>
+                                <h2 class="option-integer" id="sensation_integer"></h2>
                                 <div class="option-detail">
-                                    <h4 class="option-unit" id="pression_unit">hPa</h4>
-                                    <h4 class="option-decimal" id="pression_decimal">.</h4>
+                                    <h4 class="option-unit" id="sensation_unit">C°</h4>
+                                    <h4 class="option-decimal" id="sensation_decimal">.</h4>
+                                </div>
+                            </div>
+
+                            <div class="sensation_minmax">
+                                <div class="sensation_min">
+                                    <h5 id="sensation_minlabel">MÍNIMA</h5>
+                                    <h5 id="sensation_minvalue"></h5>
+                                </div>
+
+                                <div class="sensation_max">
+                                    <h5 id="sensation_maxlabel">MÁXIMA</h5>
+                                    <h5 id="sensation_maxvalue"></h5>
                                 </div>
                             </div>
 
                         </div>
-                        
-                    </template>
+                    </div>
 
-                    <template id="wind_template">
+                </template>
 
-                        <div class="option-container" id="wind_template">
+                <template id="fire_template">
 
-                            <h2 class="option-title" id="wind_title">VIENTO</h2>
+                    <div class="option-container" id="fire_container">
 
-                            <div class="option-important">
-                                <h2 class="option-integer" id="wind_integer"></h2>
-                                <div class="option-detail">
-                                    <h4 class="option-unit" id="wind_unit">Km/H</h4>
-                                    <h4 class="option-decimal" id="wind_decimal">.</h4>
-                                </div>
+                        <div class="fire-col">
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">FFMC</h4>
+                                <h5 id="ffmc"></h5>
+                            </div>
+
+                            <hr>
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">DMC</h4>
+                                <h5 id="dmc"></h5>
+                            </div>
+
+                            <hr>
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">DC</h4>
+                                <h5 id="dc"></h5>
+                            </div>
+
+                        </div>
+
+                        <div class="fire-col">
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">ISI</h4>
+                                <h5 id="isi"></h5>
+                            </div>
+
+                            <hr>
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">BUI</h4>
+                                <h5 id="bui"></h5>
+                            </div>
+
+                            <hr>
+
+                            <div class="fire-item">
+                                <h4 class="fire-itemtitle">FWI</h4>
+                                <h5 id="fwi"></h5>
                             </div>
                             
-                            <div class="option-secondary">
-                                <h3 class="option-subtitle" id="wind_direction"></h3>
-                            </div>
+                        </div>
+                    </div>
 
+                </template>
+
+                <template id="humidity_template">
+
+                    <div class="option-container" id="humidity_container">
+
+                        <h2 class="option-title" id="humidity_title">HUMEDAD</h2>
+
+                        <div class="option-important">
+                            <h2 class="option-integer" id="humidity_integer"></h2>
+                            <div class="option-detail">
+                                <h4 class="option-unit" id="humidity_unit">%</h4>
+                                <h4 class="option-decimal" id="humidity_decimal">.</h4>
+                            </div>
                         </div>
 
-                    </template>
+                    </div>
+                    
+                </template>
 
-                    <div id="stats_info">
+                <template id="pression_template">
+
+                    <div class="option-container" id="pression_template">
+
+                        <h2 class="option-title" id="pression_title">PRESIÓN</h2>
+
+                        <div class="option-important">
+                            <h2 class="option-integer" id="pression_integer"></h2>
+                            <div class="option-detail">
+                                <h4 class="option-unit" id="pression_unit">hPa</h4>
+                                <h4 class="option-decimal" id="pression_decimal">.</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </template>
+
+                <template id="wind_template">
+
+                    <div class="option-container" id="wind_template">
+
+                        <h2 class="option-title" id="wind_title">VIENTO</h2>
+
+                        <div class="option-important">
+                            <h2 class="option-integer" id="wind_integer"></h2>
+                            <div class="option-detail">
+                                <h4 class="option-unit" id="wind_unit">Km/H</h4>
+                                <h4 class="option-decimal" id="wind_decimal">.</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="option-secondary">
+                            <h3 class="option-subtitle" id="wind_direction"></h3>
+                        </div>
 
                     </div>
 
-                    <div id="chart_container">
-                        <canvas id="stats_chart"></canvas>
-                    </div>
+                </template>
 
+                <div id="stats_info">
+
+                </div>
+
+                <div id="chart_container">
+                    <canvas id="stats_chart"></canvas>
                 </div>
 
             </div>
@@ -218,5 +207,4 @@
 
     <script type="module" src="views/javascript/detalle.js"></script>
 
-</body>
-</html>
+@extern('footer')

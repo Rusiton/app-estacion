@@ -36,6 +36,20 @@
 			/*< se carga los archivos externos*/
 			$this->load_extern();
 
+			/*< variables a reemplazar por defecto en la vista*/
+			$env_vars = [
+				"PROJECT_NAME" => $_ENV['PROJECT_NAME'],
+				"PROJECT_DESCRIPTION" => $_ENV['PROJECT_DESCRIPTION'],
+				"PROJECT_AUTHOR" => $_ENV['PROJECT_AUTHOR'],
+				"PROJECT_AUTHOR_CONTACT" => $_ENV['PROJECT_AUTHOR_CONTACT'],
+				"PROJECT_URL" => $_ENV['PROJECT_URL'],
+				"PROJECT_KEYWORDS" => $_ENV['PROJECT_KEYWORDS'],
+				"PROJECT_MODE" => $_ENV['PROJECT_MODE'],
+			];
+
+			/*< reemplaza las variables en la vista*/
+			$this->set_vars($env_vars);
+
 		}
 
 
@@ -94,13 +108,13 @@
 				$extern_view = $externs[1][$key];
 
 				/*< valida que exista el archivo externo*/
-				if(!file_exists("views/".$extern_view.".html")){
+				if(!file_exists("views/templates/".$extern_view.".html")){
 					echo "Archivo de extern no encontrado. <b>".$extern_view."</b>";
 					exit();
 				}
 
 				/*< carga en memoria el contenido del archivo externo*/
-				$extern_buffer = file_get_contents("views/".$extern_view.".html");
+				$extern_buffer = file_get_contents("views/templates/".$extern_view.".html");
 		
 				/*< reemplaza en la vista el @extern encontrado con el contenido del archivo*/
 				$this->buffer = str_replace($extern, $extern_buffer, $this->buffer);

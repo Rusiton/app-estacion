@@ -1,26 +1,35 @@
 <?php
 
-    session_start();
+    /* index.php funciona como un router, redirecciona al controlador especificado en slug */
 
-    include_once 'env.php';
+	// se inicia o se continua con la sesion
+	session_start();
 
-    include_once 'lib/TPLEngine/TPLEngine.php';
+	/*< se incluyen las variables de entorno*/
+	include_once 'env.php';
+
+	/*< Se incluyen las librerias para el manejo de correo electrónico*/
+	include 'lib/PHPMailer/Mailer/src/PHPMailer.php';
+	include 'lib/PHPMailer/Mailer/src/SMTP.php';
+	include 'lib/PHPMailer/Mailer/src/Exception.php';
+
+	include_once 'lib/TPLEngine/TPLEngine.php';
 
     // por defecto se presenta landing
-	$seccion = "landing";
+	$section = "landing";
 
 	// Si slug tiene valor
 	if(strlen($_GET['slug'])>0){
-		$seccion = $_GET['slug'];	
+		$section = $_GET['slug'];	
 	}
 
 	// Se comprueba que exista el controlador
-	if(!file_exists('controllers/'.$seccion.'Controller.php')){
+	if(!file_exists('controllers/'.$section.'Controller.php')){
 		// No existe el controlador entonces lo llevamos al controlador de error
-		$seccion = "error404";
+		$section = "error404";
 	}
 	
-	// Se carga el controlador especificado en seccion
-	include_once 'controllers/'.$seccion.'Controller.php';
+	// Se carga el controlador especificado en section
+	include_once 'controllers/'.$section.'Controller.php';
 
 ?>

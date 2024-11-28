@@ -1,0 +1,31 @@
+#stations_table{
+    width: 600px;
+
+    border: 1px solid gray;
+    border-collapse: collapse;
+
+    thead tr{
+        background-color: rgb(97, 171, 255);
+        border-bottom: 1px solid gray
+    }
+
+    tr{
+        height: 3rem;
+        background-color: rgb(238, 238, 238);
+
+        text-align: center;
+    }
+
+    tr:nth-child(even){
+        background-color: rgb(221, 221, 221);
+    }
+}
+
+.station{
+    cursor: pointer;
+}
+
+.station:hover{
+    box-shadow: 0 0 1px 1px gray;
+    transform: scale(1.05);
+}

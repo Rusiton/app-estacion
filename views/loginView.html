@@ -1,0 +1,40 @@
+@extern('head')
+
+    <link rel="stylesheet" href="views/css/login.css">
+
+    <div id="content">
+
+        <div class="login-form-container">
+            <form class="login-form" id="login_form">
+                <div class="form-header">
+                    <h1>Iniciar Sesión</h1>
+                </div>
+                <div class="form-fields">
+                    <div class="form-field">
+                        <label for="input_email" class="form-label">Correo electrónico</label>
+                        <input type="text" name="email" class="form-input" id="input_email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="input_password" class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-input" id="input_password" required>
+                    </div>
+                    <div class="error-container" id="error_container">
+                        <p id="error_message"></p>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <a href="recovery">¿Olvidaste tu contraseña?</a>
+                    <div class="form-button-container">
+                        <input type="submit" id="submit_button" value="Acceder">
+                    </div>
+                    <a href="register">¿No tienes una cuenta? Registrarse</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script type="module" src="views/javascript/login.js"></script>
+
+@extern('footer')
